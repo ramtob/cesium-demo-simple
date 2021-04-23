@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Cesium Simple Demo</title>
+  <meta charset="utf-8">
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.79.1/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.79.1/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+</head>
+<body>
+  <div id="cesiumContainer" style="width: 700px; height:400px"></div>
+<!--  <div>-->
+<!--    <img src="ansyn2.png" width="100" height="100">-->
+<!--  </div>-->
+  <script>
+     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyZTU4ODhjYi0yNTI2LTQ3OGQtOWRiMC03OGY4NzFmODRhMDciLCJpZCI6MTE0MjEsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1NTg5NDYyMTl9.ZciTakOUpR3h8bItUzE2QqfLEna8i9I3KeljlEKsXcY';
+   var viewer = new Cesium.Viewer('cesiumContainer');
+	
+	var rotation = Cesium.Math.toRadians(30);
+
+function getRotationValue() {
+  rotation += 0.005;
+  return rotation;
+}
+
+viewer.entities.add({
+  name: "Rotating rectangle with rotating texture coordinate",
+  rectangle: {
+    coordinates1: Cesium.Rectangle.fromDegrees( -122.37870169330839,37.61892710494452,-122.36012764699774,37.62836104709176),
+    coordinates2: Cesium.Rectangle.fromDegrees( 32.0012804,  34.0059748,32.9988664,  34.9988400),
+    coordinates3: Cesium.Rectangle.fromDegrees( 23.4571727,  31.8600000,36.9890000,  36.7593700),
+    coordinates: Cesium.Rectangle.fromDegrees( 23.4541727,  31.8543700,36.9901727,  36.7623700),
+    material1: "./Cesium_Logo_Color.jpg",
+    material2: "./ansyn2.png",
+    material: "./1904_tr006.png",
+    /* rotation: new Cesium.CallbackProperty(getRotationValue, false),
+    stRotation: new Cesium.CallbackProperty(getRotationValue, false), */
+    classificationType: Cesium.ClassificationType.TERRAIN,
+  },
+});
+
+viewer.zoomTo(viewer.entities);
+
+  </script>
+</body>
+</html>
